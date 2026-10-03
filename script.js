@@ -4,7 +4,7 @@ const nameInput = document.getElementById("attendeeName");
 const teamSelect = document.getElementById("teamSelect"); 
 
 //Track Attendance
-let = count = 0;
+let count = 0;
 const maxCount = 50; 
 //Handle Form Submission
 form.addEventListener("submit", function (event){
@@ -27,12 +27,13 @@ console.log(`Progress: ${percentage}`);
 
 //Update Team Counter
 const teamCounter = document.getElementById(team + "Count")
-console.log(TeamCounter)
-const current = parseInt(teamCounter.textContent);
-console.log("Previous team count: ", current);
+console.log(teamCounter)
+teamCounter.textContent = parseInt(teamCounter.textContent) + 1;
 
-const newTotal = current + 1;
-teamCounter.textContent = newTotal;
-console.log("New team count: ", newTotal);
+//Show Welcome Message
+const message = `🎉 Welcome, ${name} from ${teamName}!`;
+console.log(message);
+
+form.reset();
 
 })
