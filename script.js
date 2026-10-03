@@ -65,10 +65,22 @@ function showCelebration() {
     winningTeams.push("Team Renewables");
   }
 
+  const overlay = document.createElement("div");
+  overlay.id = "celebrationOverlay";
+  overlay.className = "celebration-overlay";
+  overlay.setAttribute("role", "dialog");
+  overlay.setAttribute("aria-modal", "true");
+
+  const modal = document.createElement("div");
+  modal.className = "celebration-modal";
+
   const celebration = document.createElement("p");
   celebration.id = "celebrationMessage";
   celebration.textContent = `🎉 Congratulations to ${winningTeams.join(" and ")} for leading attendance!`;
-  document.querySelector(".team-stats").appendChild(celebration);
+
+  modal.appendChild(celebration);
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
 }
 
 try {

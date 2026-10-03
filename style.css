@@ -321,16 +321,43 @@ select {
   margin-bottom: 20px;
 }
 
-.team-stats > p {
-  margin: 24px auto 0;
-  padding: 22px;
-  border: 2px solid #00aeef;
-  border-radius: 12px;
+.celebration-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background-color: rgba(0, 26, 51, 0.65);
+}
+
+.celebration-modal {
+  width: 100%;
+  max-width: 560px;
+  padding: 32px;
+  border: 2px solid #f2c14e;
+  border-radius: 16px;
   background-color: #e8f4fc;
-  box-shadow: 0 4px 12px rgba(0, 60, 116, 0.12);
-  color: #003c71;
+  box-shadow: 0 8px 32px rgba(0, 60, 116, 0.28), 0 0 18px rgba(242, 193, 78, 0.55);
   text-align: center;
-  font-size: 22px;
+  animation: celebration-glow 2.2s ease-in-out infinite;
+}
+
+@keyframes celebration-glow {
+  0%,
+  100% {
+    box-shadow: 0 8px 32px rgba(0, 60, 116, 0.28), 0 0 16px 3px rgba(242, 193, 78, 0.45);
+  }
+  50% {
+    box-shadow: 0 8px 32px rgba(0, 60, 116, 0.28), 0 0 38px 10px rgba(255, 198, 64, 0.9);
+  }
+}
+
+.celebration-modal p {
+  margin: 0;
+  color: #003c71;
+  font-size: 24px;
   font-weight: 700;
 }
 
