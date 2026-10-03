@@ -321,6 +321,19 @@ select {
   margin-bottom: 20px;
 }
 
+.team-stats > p {
+  margin: 24px auto 0;
+  padding: 22px;
+  border: 2px solid #00aeef;
+  border-radius: 12px;
+  background-color: #e8f4fc;
+  box-shadow: 0 4px 12px rgba(0, 60, 116, 0.12);
+  color: #003c71;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+}
+
 .teams-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
