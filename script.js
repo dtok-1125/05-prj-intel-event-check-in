@@ -38,6 +38,38 @@ function getSavedCount(key) {
   return parsedCount;
 }
 
+function addConfetti(overlay) {
+  const confettiContainer = document.createElement("div");
+  confettiContainer.className = "confetti-container";
+  const colors = ["#00aeef", "#0071c5", "#f2c14e", "#ef476f", "#06d6a0", "#ffffff"];
+
+  for (let i = 0; i < 90; i++) {
+    const confetti = document.createElement("span");
+    const fromLeft = i % 2 === 0;
+    const horizontalTravel = 15 + Math.random() * 100;
+
+    confetti.className = "confetti-piece";
+    confetti.style.left = fromLeft ? `${Math.random() * 7}vw` : "auto";
+    confetti.style.right = fromLeft ? "auto" : `${Math.random() * 7}vw`;
+    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.width = `${5 + Math.random() * 8}px`;
+    confetti.style.height = `${8 + Math.random() * 13}px`;
+    confetti.style.setProperty("--confetti-drift", `${fromLeft ? horizontalTravel : -horizontalTravel}vw`);
+    confetti.style.setProperty("--confetti-rise", `-${70 + Math.random() * 40}vh`);
+    confetti.style.setProperty("--confetti-fall", `${90 + Math.random() * 30}vh`);
+    confetti.style.setProperty("--confetti-mid-rotation", `${Math.random() * 540}deg`);
+    confetti.style.setProperty("--confetti-rotation", `${Math.random() * 1080}deg`);
+    confetti.style.animationDuration = `${3.6 + Math.random() * 0.8}s`;
+    confetti.style.animationDelay = `${Math.random() * 0.55}s`;
+    confettiContainer.appendChild(confetti);
+  }
+
+  overlay.appendChild(confettiContainer);
+  setTimeout(function () {
+    confettiContainer.remove();
+  }, 5000);
+}
+
 function showCelebration() {
   if (document.getElementById("celebrationMessage")) {
     return;
@@ -78,6 +110,7 @@ function showCelebration() {
   celebration.id = "celebrationMessage";
   celebration.textContent = `🎉 Congratulations to ${winningTeams.join(" and ")} for leading attendance!`;
 
+  addConfetti(overlay);
   modal.appendChild(celebration);
   overlay.appendChild(modal);
   document.body.appendChild(overlay);
