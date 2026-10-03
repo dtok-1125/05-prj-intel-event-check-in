@@ -358,26 +358,6 @@ select {
   position: absolute;
   bottom: 0;
   opacity: 0;
-  animation: confetti-fall 4.5s cubic-bezier(0.18, 0.72, 0.3, 1) forwards;
-}
-
-@keyframes confetti-fall {
-  0% {
-    opacity: 1;
-    transform: translate(0, 0) rotate(0deg);
-  }
-  48% {
-    opacity: 1;
-    transform: translate(var(--confetti-drift), var(--confetti-rise))
-      rotate(var(--confetti-mid-rotation));
-  }
-  70% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(var(--confetti-drift), var(--confetti-fall)) rotate(var(--confetti-rotation));
-  }
 }
 
 @keyframes celebration-glow {

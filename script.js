@@ -43,31 +43,62 @@ function addConfetti(overlay) {
   confettiContainer.className = "confetti-container";
   const colors = ["#00aeef", "#0071c5", "#f2c14e", "#ef476f", "#06d6a0", "#ffffff"];
 
-  for (let i = 0; i < 90; i++) {
+  for (let i = 0; i < 150; i++) {
     const confetti = document.createElement("span");
     const fromLeft = i % 2 === 0;
-    const horizontalTravel = 15 + Math.random() * 100;
+    const spreadIndex = (i * 37) % 150;
+    const horizontalTarget = Math.max(2, Math.min(98, 4 + (spreadIndex / 149) * 92 + (Math.random() * 6 - 3)));
+    const launchOffset = Math.random() * 7;
+    const launchPosition = fromLeft ? launchOffset : 100 - launchOffset;
+    const horizontalTravel = horizontalTarget - launchPosition;
 
     confetti.className = "confetti-piece";
-    confetti.style.left = fromLeft ? `${Math.random() * 7}vw` : "auto";
-    confetti.style.right = fromLeft ? "auto" : `${Math.random() * 7}vw`;
+    confetti.style.left = fromLeft ? `${launchOffset}vw` : "auto";
+    confetti.style.right = fromLeft ? "auto" : `${launchOffset}vw`;
     confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
     confetti.style.width = `${5 + Math.random() * 8}px`;
     confetti.style.height = `${8 + Math.random() * 13}px`;
-    confetti.style.setProperty("--confetti-drift", `${fromLeft ? horizontalTravel : -horizontalTravel}vw`);
-    confetti.style.setProperty("--confetti-rise", `-${70 + Math.random() * 40}vh`);
-    confetti.style.setProperty("--confetti-fall", `${90 + Math.random() * 30}vh`);
-    confetti.style.setProperty("--confetti-mid-rotation", `${Math.random() * 540}deg`);
-    confetti.style.setProperty("--confetti-rotation", `${Math.random() * 1080}deg`);
-    confetti.style.animationDuration = `${3.6 + Math.random() * 0.8}s`;
-    confetti.style.animationDelay = `${Math.random() * 0.55}s`;
+    const peakHeight = 70 + Math.random() * 40;
+    const peakOffset = 0.3 + Math.random() * 0.18;
+    const peakDrift = horizontalTravel * (0.4 + Math.random() * 0.3);
+    const fallDrift = Math.random() * 16 - 8;
+    const duration = 7.5 + Math.random() * 1.5;
+    const delay = Math.random() * 0.8;
+
+    confetti.animate(
+      [
+        {
+          opacity: 1,
+          transform: "translate(0, 0) rotate(0deg)",
+          offset: 0,
+          easing: "cubic-bezier(0.12, 0.7, 0.25, 0.88)"
+        },
+        {
+          opacity: 1,
+          transform: `translate(${peakDrift}vw, -${peakHeight}vh) rotate(${Math.random() * 540}deg)`,
+          offset: peakOffset,
+          easing: "cubic-bezier(0.25, 0.12, 0.65, 1)"
+        },
+        {
+          opacity: 0,
+          transform: `translate(${horizontalTravel + fallDrift}vw, ${90 + Math.random() * 30}vh) rotate(${Math.random() * 1080}deg)`,
+          offset: 1
+        }
+      ],
+      {
+        duration: duration * 1000,
+        delay: delay * 1000,
+        fill: "forwards"
+      }
+    );
+
     confettiContainer.appendChild(confetti);
   }
 
   overlay.appendChild(confettiContainer);
   setTimeout(function () {
     confettiContainer.remove();
-  }, 5000);
+  }, 10000);
 }
 
 function showCelebration() {
