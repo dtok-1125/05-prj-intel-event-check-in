@@ -258,6 +258,10 @@ button .fas {
   color: #003c71;
 }
 
+#greeting.success-message {
+  display: block;
+}
+
 /* Counter */
 #attendeeCount {
   color: #0071c5;

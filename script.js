@@ -2,6 +2,7 @@
 const form = document.getElementById("checkInForm");
 const nameInput = document.getElementById("attendeeName");
 const teamSelect = document.getElementById("teamSelect"); 
+const greeting = document.getElementById("greeting");
 
 //Track Attendance
 let count = 0;
@@ -33,6 +34,9 @@ teamCounter.textContent = parseInt(teamCounter.textContent) + 1;
 //Show Welcome Message
 const message = `🎉 Welcome, ${name} from ${teamName}!`;
 console.log(message);
+
+greeting.textContent = message;
+greeting.classList.add("success-message");
 
 form.reset();
 
