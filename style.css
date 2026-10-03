@@ -365,6 +365,34 @@ select {
   color: #475569;
 }
 
+.attendee-list-section {
+  margin-top: 30px;
+  padding: 24px;
+  border-radius: 12px;
+  background-color: #f8fafc;
+  text-align: left;
+}
+
+.attendee-list-section h3 {
+  margin-bottom: 12px;
+  color: #003c71;
+  font-size: 18px;
+}
+
+#attendeeList {
+  list-style: none;
+}
+
+#attendeeList li {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #475569;
+}
+
+#attendeeList li:last-child {
+  border-bottom: none;
+}
+
 /* Mobile responsive */
 @media (max-width: 768px) {
   .hero {
